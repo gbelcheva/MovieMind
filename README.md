@@ -5,6 +5,6 @@ MovieMind
 
 [![Build status]()
 
-## Cinemlaniac's application for movie recommendations and mind reading rating system.
+## Cinemaniac's application for movie recommendations and mind reading rating system.
 
 
