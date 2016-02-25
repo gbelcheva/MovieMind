@@ -1,0 +1,88 @@
+﻿@model MovieMind.Web.ViewModels.Movies.PagedMoviesViewModel
+@{
+    ViewBag.Title = "Search Movies";
+}
+
+@using (Ajax.BeginForm(
+                                                             "Index",
+                                                             null,
+                                                             new AjaxOptions
+                                                             {
+                                                                 UpdateTargetId = "results",
+                                                                 InsertionMode = InsertionMode.Replace,
+                                                                 HttpMethod = "POST"
+                                                             },
+                                                             new { id = "searchForm", @class = "form-inline" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 max-width">
+                        <input type="text" id="q" name="query" value="@Model.Query" placeholder="Search" class="form-control" />
+                    </div>
+                </div>
+                <input type="number" id="p" name="page" placeholder="Page" hidden />
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <select name="language" class="filters form-control">
+                            <option value="">Filter by language</option>
+                            @foreach (var language in Model.AllLanguages)
+                {
+                    if (language.Name == @Model.Language)
+                    {
+                                    <option value="@language.Name" selected>@language.Name</option>
+                                    continue;
+                                }
+
+                                <option value="@language.Name">@language.Name</option>
+                            }
+                        </select>
+
+                        <select name="country" class="filters form-control">
+                            <option value="">Filter by country</option>
+                            @foreach (var country in Model.AllCountries)
+                {
+                    if (country.Name == @Model.Country)
+                    {
+                                    <option value="@country.Name" selected>@country.Name</option>
+                                    continue;
+                                }
+
+                                <option value="@country.Name">@country.Name</option>
+                            }
+                        </select>
+
+                        <select name="genre" class="filters form-control">
+                            <option value="">Filter by genre</option>
+                            @foreach (var genre in Model.AllGenres)
+                {
+                    if (genre.Name == @Model.Genre)
+                    {
+                                    <option value="@genre.Name" selected>@genre.Name</option>
+                                    continue;
+                                }
+
+                                <option value="@genre.Name">@genre.Name</option>
+                            }
+                        </select>
+
+                        <input type="submit" value="Filter" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div id="results">
+</div>
+
+
+

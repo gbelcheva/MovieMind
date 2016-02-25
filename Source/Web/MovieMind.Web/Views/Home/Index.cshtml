@@ -1,0 +1,41 @@
+﻿@model MovieMind.Web.ViewModels.Home.IndexViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="text-center">
+    <h1>Movie Mind</h1>
+    <h4>Mind Reading Movie System</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 text-center"><h3>@Model.TotalMovies</h3> movies </div>
+        <div class="col-md-6 text-center"><h3>@Model.TotalReviews</h3> reviews</div>
+    </div>
+    <hr />
+    <h2>This Week's Trending Movies</h2>
+</div>
+<br />
+<div class="row">
+    @foreach (var movie in Model.Movies)
+    {
+        <div class="panel panel-default col-md-3">
+            <div class="panel-heading text-center">
+                <a href="/Movies/@movie.Url">
+
+                    <div class="hide-overflow-big">
+                        <h3>
+                            @movie.Title @if (movie.Year != null)
+                            {
+                                @:(@movie.Year)
+                            }
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <div class="panel-body">
+                <a href="/Movies/@movie.Url">
+                    <img src="@movie.Poster" height="350" width="240" />
+                </a>
+            </div>
+        </div>
+    }
+</div>

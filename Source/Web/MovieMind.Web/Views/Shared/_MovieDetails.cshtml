@@ -1,0 +1,71 @@
+﻿@using MovieMind.Common
+@model MovieMind.Web.ViewModels.Movies.MovieDetailsViewModel
+
+
+<div class="main-content">
+    <div class="col-md-12">
+        <div>
+            <div class="panel panel-default">
+                <h1>
+                    <strong>
+                        @if (Model.Year != null)
+                        {
+                            @:@Model.Rating.ToString("0.0")/@GlobalConstants.RatingSystemPoints
+    }
+                    </strong>
+                    <div>
+                        @Model.Title
+                    </div>
+                </h1>
+                <div class="panel-body">
+                    <div class="clearfix"></div>
+                    <img src="@Model.Poster" alt="" width="480" height="600">
+                </div>
+                <div class="panel-body">
+
+                    <div>
+                        <h4>Year:</h4>
+                        <p>@Model.Year</p>
+                        @if (Model.Runtime != "N/A")
+                        {
+                            <h4>Duration:</h4>
+                            <p>@Model.Runtime</p>
+                        }
+                        @if (Model.Writer.Count() > 0)
+                        {
+                            <h4>Writer:</h4>
+                            <p>@string.Join(", ", Model.Writer)</p>
+                        }
+                        @if (Model.Director.Count() > 0)
+                        {
+                            <h4>Director:</h4>
+                            <p>@string.Join(", ", Model.Director)</p>
+                        }
+                        @if (Model.Language.Count() > 0)
+                        {
+                            <h4>Language:</h4>
+                            <p>@string.Join(", ", Model.Language)</p>
+                        }
+                        @if (Model.Genre.Count() > 0)
+                        {
+                            <h4>Genre:</h4>
+                            <p>@string.Join(", ", Model.Genre)</p>
+                        }
+                        @if (Model.Actors.Count() > 0)
+                        {
+                            <h4>Cast:</h4>
+                            <p>@string.Join(", ", Model.Actors)</p>
+                        }
+                        @if (Model.Plot != "N/A")
+                        {
+                            <h4>Plot:</h4>
+                            <p>@Model.Plot</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 ">
+    </div>
+</div>

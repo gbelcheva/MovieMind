@@ -1,0 +1,23 @@
+﻿@model MovieMind.Web.ViewModels.Reviews.ReviewPostModel
+
+@using (Html.BeginForm("PostReview", "Reviews", FormMethod.Post, new { @class = "form-horizontal col-md-12", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Leave Review</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="col-md-12">
+            @Html.TextAreaFor(m => m.Content, new { @class = "form-control max-width", rows = 10, placeholder = "Give an honest review..." })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" class="btn btn-default " value="Submit" />
+        </div>
+    </div>
+}
+
+@section Scripts {x
+    @Scripts.Render("~/bundles/jqueryval")
+}

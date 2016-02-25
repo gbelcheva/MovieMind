@@ -1,0 +1,82 @@
+﻿@using MovieMind.Common
+@model MovieMind.Web.ViewModels.Reviews.PagedReviewsViewModel
+
+
+
+
+<div class="row">
+    @foreach (var review in Model.Reviews)
+    {
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>@review.Rating</h2> By <strong>@review.AuthorName</strong> <small>@review.CreatedOn.ToString("dd MMM yyyy @ HH:mm")</small></div>
+                <div class="panel-body">
+
+                    @{
+                        var lableId = "label" + review.Id;
+                        var contentId = "content" + review.Id;
+                        var clickFunction = "showText(" + @review.Id + ")";
+                    }
+                    <input class="toggle-box" />
+                    <label id=@lableId data-attr="+" onclick=@clickFunction>Click To Read</label>
+                    <div class="content" id=@contentId>@Html.Raw(review.Content)</div>
+                </div>
+            </div>
+        </div>
+                        }
+</div>
+
+<ul class="pagination">
+    @if (Model.CurrentPage > 1)
+            {
+                var prevPage = Model.CurrentPage - 1;
+                if (Model.CurrentPage == 1)
+                {
+                    prevPage = Model.CurrentPage;
+                }
+
+                <li>
+                    <button onclick="changePage(@prevPage)" aria-label="Previous" class="btn btn-default page-changer"><span aria-hidden="true">&laquo;</span></button>
+                </li>
+    }
+    @{
+        var firstPage = (Model.CurrentPage - 4 < 1) ? 1 : Model.CurrentPage - 4;
+        var lastPage = (firstPage + 9 > Model.TotalPages) ? Model.TotalPages : firstPage + 9;
+    }
+
+    @for (int i = firstPage; i <= lastPage; i++)
+            {
+                var className = string.Empty;
+                if (i == Model.CurrentPage)
+                {
+                    className = "active";
+                }
+
+                <li><button onclick="changePage(@i)" class="btn btn-default page-changer @className">@i</button></li>
+    }
+
+    @if (Model.CurrentPage < Model.TotalPages)
+            {
+                var nextPage = Model.CurrentPage + 1;
+                if (Model.CurrentPage == Model.TotalPages)
+                {
+                    nextPage = Model.CurrentPage;
+                }
+                <li>
+                    <button aria-label="Next" onclick="changePage(@nextPage)" class="btn btn-default page-changer" id="@nextPage"><span aria-hidden="true">&raquo;</span></button>
+                </li>
+    }
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+

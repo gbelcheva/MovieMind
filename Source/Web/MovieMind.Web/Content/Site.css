@@ -1,0 +1,89 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.hide-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-height: 20px; /* fallback */
+    max-height: 70px; /* fallback */
+    min-height: 70px;
+}
+
+.hide-overflow-big {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-height: 30px; /* fallback */
+    max-height: 100px; /* fallback */
+    min-height: 100px;
+}
+
+.content {
+    display: none;
+}
+
+.toggle-box {
+    display: none;
+}
+
+    .toggle-box + label {
+        cursor: pointer;
+        display: block;
+        font-weight: bold;
+        line-height: 21px;
+        margin-bottom: 5px;
+    }
+
+        .toggle-box + label + div {
+            display: none;
+            margin-bottom: 10px;
+        }
+
+
+        .toggle-box + label:before {
+            background-color: #4F5150;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            color: #FFFFFF;
+            content: attr(data-attr);
+            display: block;
+            float: left;
+            font-weight: bold;
+            height: 20px;
+            line-height: 20px;
+            margin-right: 5px;
+            text-align: center;
+            width: 20px;
+        }
+
+.max-width {
+    max-width: 50000px;
+}

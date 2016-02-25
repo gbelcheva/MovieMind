@@ -1,0 +1,55 @@
+﻿@model MovieMind.Web.ViewModels.Movies.MovieByIdViewModel
+@{
+    ViewBag.Title = "Movie Page";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        @{Html.RenderPartial("_MovieDetails", Model.Movie);}
+    </div>
+    <div class="col-md-6">
+        @if (this.User.Identity.IsAuthenticated)
+        {
+            <div class="panel panel-default">
+                @{Html.RenderPartial("_PostReview", Model.PostReview);}
+            </div>
+
+                    }
+        <hr />
+        @using (Ajax.BeginForm(
+                                                                     "ReviewsByMovieId",
+                                                                     "Reviews",
+                                                                     null,
+                                                                     new AjaxOptions
+                                                                     {
+                                                                         UpdateTargetId = "results",
+                                                                         InsertionMode = InsertionMode.Replace,
+                                                                         HttpMethod = "POST"
+                                                                     },
+                                                                     new { id = "searchForm", @class = "form-inline" }))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <input type="number" id="p" name="page" placeholder="Page" hidden />
+                        <input type="number" id="m" name="id" placeholder="MovieId" value="@Model.Movie.EncodedId" hidden />
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="results">
+            @{Html.RenderPartial("_MovieReviews", Model.Reviews);}
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

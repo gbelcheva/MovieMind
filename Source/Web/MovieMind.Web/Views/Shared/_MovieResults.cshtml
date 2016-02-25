@@ -1,0 +1,94 @@
+﻿    @model MovieMind.Web.ViewModels.Movies.PagedMoviesViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <div id="movie-details">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            <ul class="pagination">
+                @if (Model.CurrentPage > 1)
+                {
+                var prevPage = Model.CurrentPage - 1;
+                if (Model.CurrentPage == 1)
+                {
+                prevPage = Model.CurrentPage;
+                }
+
+                <li>
+                    <button onclick="changePage(@prevPage)" aria-label="Previous" class="btn btn-default page-changer"><span aria-hidden="true">&laquo;</span></button>
+                </li>
+                }
+                @{
+                var firstPage = (Model.CurrentPage - 4 < 1) ? 1 : Model.CurrentPage - 4;
+                var lastPage = (firstPage + 9 > Model.TotalPages) ? Model.TotalPages : firstPage + 9;
+                }
+
+                @for (int i = firstPage; i <= lastPage; i++)
+                {
+                var className = string.Empty;
+                if (i == Model.CurrentPage)
+                {
+                className = "active";
+                }
+
+                <li><button onclick="changePage(@i)" class="btn btn-default page-changer @className">@i</button></li>
+                }
+
+                @if (Model.CurrentPage < Model.TotalPages)
+                {
+                var nextPage = Model.CurrentPage + 1;
+                if (Model.CurrentPage == Model.TotalPages)
+                {
+                nextPage = Model.CurrentPage;
+                }
+                <li>
+                    <button aria-label="Next" onclick="changePage(@nextPage)" class="btn btn-default page-changer" id="@nextPage"><span aria-hidden="true">&raquo;</span></button>
+                </li>
+                }
+            </ul>
+        </div>
+        <div class="row">
+
+            @foreach (var movie in Model.Movies)
+            {
+            <div class="panel panel-default col-md-4">
+                <div class="panel-heading text-center">
+                    <a href="/Movies/@movie.Url">
+
+                        <div class="hide-overflow">
+                            <h5>
+
+                                @movie.Title @if (movie.Year != null)
+                                {
+                                @:(@movie.Year)
+                                }
+                            </h5>
+                        </div>
+                    </a>
+                </div>
+                <div class="panel-body">
+                    <a href="/Movies/@movie.Url">
+                        <img src="@movie.Poster" height="180" width="120" />
+                    </a>
+                </div>
+                <div class="panel-footer text-center" id="@movie.Id">
+                    <h3 class="panel-title">
+
+
+
+                        @Ajax.ActionLink("View More", "ById", "Movies", new { id = movie.EncodedId }, new AjaxOptions
+                        {
+                        UpdateTargetId = "movie-details",
+                        HttpMethod = "GET",
+                        InsertionMode = InsertionMode.Replace,
+                        })
+                    </h3>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+

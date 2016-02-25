@@ -1,0 +1,36 @@
+﻿@using Kendo.Mvc.UI
+
+@(Html.Kendo().Grid<MovieMind.Web.Areas.Administration.Models.ReviewViewModel>()
+      .Name("grid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.Content);
+          columns.Bound(c => c.Rating);
+          columns.Bound(c => c.AuthorName);
+          columns.Bound(c => c.MovieName);
+          columns.Bound(c => c.CreatedOn);
+          columns.Bound(c => c.ModifiedOn);
+          columns.Bound(c => c.IsDeleted);
+          columns.Bound(c => c.DeletedOn);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar => {
+          toolbar.Create();
+      })
+      .ColumnMenu()
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Pageable()
+      .Sortable(sortable => {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Filterable()
+      .Scrollable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model => model.Id(p =>p.Id))
+          .Read(read => read.Action("Reviews_Read", "Reviews"))
+          .Create(create => create.Action("Reviews_Create", "Reviews"))
+          .Update(update => update.Action("Reviews_Update", "Reviews"))
+          .Destroy(destroy => destroy.Action("Reviews_Destroy", "Reviews"))
+      )
+)

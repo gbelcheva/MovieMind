@@ -1,0 +1,30 @@
+﻿@model MovieMind.Web.Areas.Administration.Models.MovieViewModel
+
+<form class="form-horizontal" role="form">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.EditorFor(m => m.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Year, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.EditorFor(m => m.Year, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Plot, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.EditorFor(m => m.Plot, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Poster, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.EditorFor(m => m.Poster, new { @class = "form-control" })
+        </div>
+    </div>
+</form>
+

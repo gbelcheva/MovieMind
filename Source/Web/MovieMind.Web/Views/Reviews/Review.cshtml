@@ -1,0 +1,14 @@
+﻿@model MovieMind.Web.ViewModels.Reviews.ReviewViewModel
+
+<div class="row">
+    <div class="col-md-6" id="movie-details"></div>
+
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @Model.Content
+            </div>
+            <div class="panel-footer"><h2>@Model.Rating</h2> By <strong>@Model.AuthorName</strong> <small>@Model.CreatedOn.ToString("dd MMM yyyy @ HH:mm")</small></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model MovieMind.Web.Areas.Administration.Models.ReviewViewModel
+
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        @Html.LabelFor(m => m.Content, new { @class = "col-md-2 control-label" })
+        <div class="col-md-5">
+            @Html.EditorFor(m => m.Content, new { @class = "form-control" })
+        </div>
+    </div>
+</form>
+
