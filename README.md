@@ -1,10 +1,12 @@
 # MovieMind
 MovieMind
 
-## Build status
+### Cinemaniac's application for movie recommendations and mind reading rating system.
 
-[![Build status]()
+Using Binary Naive Beyes Algorithm
 
-## Cinemaniac's application for movie recommendations and mind reading rating system.
+[![http://commonsenseatheism.com/wp-content/uploads/2010/12/eq_bayes_reduced.png](http://commonsenseatheism.com/wp-content/uploads/2010/12/eq_bayes_reduced.png)]
 
+## Azure
 
+(http://moviemind.azurewebsites.net/)
